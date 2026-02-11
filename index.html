@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Ferbuu ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Quicksand:wght@300;400;500&family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FFF8F0;
+            --pink: #FFD6E8;
+            --lavender: #E5D4ED;
+            --soft-peach: #FFDFD3;
+            --gold: #D4AF37;
+            --text-dark: #4A4A4A;
+            --text-light: #8B8B8B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--pink) 50%, var(--lavender) 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* ========== FLOATING HEARTS INTRO ANIMATION ========== */
+        .intro-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #FFE5F0 0%, #FFF0F8 50%, #F5E6F0 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .intro-animation.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .floating-hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            opacity: 0;
+            animation: floatUp 4s ease-in infinite;
+        }
+
+        .floating-heart::before,
+        .floating-heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 32px;
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .floating-heart::before {
+            left: 10px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .floating-heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0.5) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1) rotate(360deg);
+            }
+        }
+
+        .intro-message {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .intro-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 400;
+            color: var(--text-dark);
+            opacity: 0;
+            animation: fadeInScale 1.5s ease-out 0.5s forwards;
+            margin-bottom: 1rem;
+        }
+
+        .intro-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #FF1493;
+            opacity: 0;
+            animation: fadeInScale 1.5s ease-out 1.5s forwards;
+        }
+
+        .intro-heart-icon {
+            display: inline-block;
+            color: #FF69B4;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .main-content {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .main-content.visible {
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 300;
+            color: #FF1493;
+            margin-bottom: 3rem;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 3rem;
+            padding: 0 2rem;
+        }
+
+        .nav-btn {
+            padding: 2.5rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 3px solid var(--pink);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-btn .icon {
+            font-size: 3rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-10px);
+            background: var(--pink);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            border-color: var(--gold);
+        }
+
+        /* ========== LETTER SECTION ========== */
+        .letter-section {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            display: none;
+        }
+
+        .letter-section.active {
+            display: block;
+        }
+
+        .letter-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .envelopes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .envelope-container {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 220px;
+            position: relative;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-container:hover .envelope-wrapper {
+            transform: translateY(-10px);
+        }
+
+        .envelope-body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFE8F0 0%, #FFD6E8 100%);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--gold);
+            z-index: 1;
+        }
+
+        .envelope-label {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-top: 1rem;
+        }
+
+        /* Heart seal on envelope */
+        .envelope-seal {
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            z-index: 3;
+            filter: drop-shadow(0 4px 8px rgba(255, 20, 147, 0.4));
+        }
+
+        .envelope-seal::before,
+        .envelope-seal::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .envelope-seal::before {
+            left: 12.5px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .envelope-seal::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(135deg, #FFD6E8 0%, #FFB6D9 100%);
+            transform-origin: top center;
+            transition: transform 0.6s ease;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            border: 2px solid var(--gold);
+            border-bottom: none;
+            z-index: 2;
+        }
+
+        .envelope-container.opened .envelope-flap {
+            transform: rotateX(-180deg);
+        }
+
+        .envelope-container.opened .envelope-seal {
+            transform: translateX(-50%) rotateX(-180deg);
+        }
+
+        /* Letter Modal */
+        .letter-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .letter-modal.active {
+            display: flex;
+        }
+
+        .letter-content {
+            background: #FFFBF5;
+            padding: 4rem;
+            border-radius: 20px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--gold);
+            animation: letterSlideIn 0.6s ease-out;
+        }
+
+        @keyframes letterSlideIn {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-letter {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: var(--pink);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-letter:hover {
+            background: var(--lavender);
+            transform: rotate(90deg);
+        }
+
+        .letter-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .letter-content p {
+            font-size: 1.2rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .letter-signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            text-align: right;
+            margin-top: 2rem;
+            color: var(--gold);
+        }
+
+        /* ========== GALLERY SECTION ========== */
+        .gallery-section {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            display: none;
+        }
+
+        .gallery-section.active {
+            display: block;
+        }
+
+        .gallery-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .gallery-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .slideshow-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border: 3px solid var(--gold);
+        }
+
+        .slide-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #f0f0f0;
+        }
+
+        .slide-caption {
+            display: none;
+        }
+
+        .slide-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .slide-btn {
+            background: linear-gradient(135deg, var(--pink), var(--lavender));
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .slide-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .slide-counter {
+            display: none;
+        }
+
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+        }
+
+        .autoplay-toggle {
+            display: none;
+        }
+
+        /* ========== GAME SECTION ========== */
+        .game-section {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            display: none;
+        }
+
+        .game-section.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .game-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 30px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border: 3px solid var(--gold);
+        }
+
+        .reason-display {
+            min-height: 300px;
+            background: linear-gradient(135deg, var(--pink), var(--lavender));
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 3px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reason-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .reason-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reason-counter {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .reveal-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--pink), var(--lavender));
+            border: 3px solid var(--gold);
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Quicksand', sans-serif;
+            margin-bottom: 1.5rem;
+        }
+
+        .reveal-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .memory-game-section {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 2px dashed var(--pink);
+        }
+
+        .memory-game-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .memory-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--pink), var(--lavender));
+            border: 3px solid var(--gold);
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .memory-card .card-back,
+        .memory-card .card-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backface-visibility: hidden;
+            border-radius: 15px;
+        }
+
+        .memory-card .card-back {
+            background: linear-gradient(135deg, var(--pink), var(--lavender));
+        }
+
+        .memory-card .card-front {
+            background: white;
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .game-stats span {
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        .reset-game {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--pink), var(--lavender));
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .reset-game:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .win-message {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #FF1493;
+            margin-bottom: 1rem;
+            font-family: 'Dancing Script', cursive;
+            display: none;
+        }
+
+        .win-message.show {
+            display: block;
+        }
+
+        /* ========== COUNTDOWN PAGE ========== */
+        .countdown-page {
+            min-height: 100vh;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .countdown-page.active {
+            display: flex;
+        }
+
+        .countdown-page h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .countdown-page .subtitle-count {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .countdown-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border: 3px solid var(--gold);
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 2rem;
+        }
+
+        .countdown-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--pink), var(--lavender));
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            color: var(--gold);
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Back Button - Arrow Style */
+        .back-btn {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--pink);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .back-btn:hover {
+            background: var(--pink);
+            transform: translateX(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .intro-title {
+                font-size: 2.5rem;
+            }
+
+            .intro-subtitle {
+                font-size: 1.8rem;
+            }
+
+            .letter-content {
+                padding: 2rem;
+            }
+            
+            .nav-buttons {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .countdown-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .memory-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .game-container {
+                padding: 2rem;
+            }
+
+            .slideshow-container {
+                padding: 2rem;
+            }
+
+            .reason-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Intro Animation -->
+    <div class="intro-animation" id="introAnimation">
+        <div class="floating-hearts-container" id="floatingHearts">
+            <!-- Hearts will be generated by JavaScript -->
+        </div>
+        <div class="intro-message">
+            <h1 class="intro-title">Happy Birthday</h1>
+            <p class="intro-subtitle">My Dearest Ferbuu <span class="intro-heart-icon">♡</span></p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Home Section -->
+        <section class="hero" id="homeSection">
+            <h1>Happy Birthday</h1>
+            <p class="subtitle">My Dearest Ferbuu ♡</p>
+
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="showSection('letters')">
+                    <span class="icon">💌</span>
+                    <span>Love Letters</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('gallery')">
+                    <span class="icon">📸</span>
+                    <span>Our Memories</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('game')">
+                    <span class="icon">🎮</span>
+                    <span>Fun & Games</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('countdown')">
+                    <span class="icon">🎁</span>
+                    <span>Special Surprise</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Letter Section -->
+        <section class="letter-section" id="letterSection">
+            <button class="back-btn" onclick="showSection('home')">←</button>
+            <h2>Letters From My Heart</h2>
+            <div class="envelopes-grid">
+                <div class="envelope-container" onclick="openLetter(1)">
+                    <div class="envelope-wrapper">
+                        <div class="envelope-seal"></div>
+                        <div class="envelope-body">
+                            <div class="envelope-label">Letter 1</div>
+                        </div>
+                        <div class="envelope-flap"></div>
+                    </div>
+                </div>
+
+                <div class="envelope-container" onclick="openLetter(2)">
+                    <div class="envelope-wrapper">
+                        <div class="envelope-seal"></div>
+                        <div class="envelope-body">
+                            <div class="envelope-label">Letter 2</div>
+                        </div>
+                        <div class="envelope-flap"></div>
+                    </div>
+                </div>
+
+                <div class="envelope-container" onclick="openLetter(3)">
+                    <div class="envelope-wrapper">
+                        <div class="envelope-seal"></div>
+                        <div class="envelope-body">
+                            <div class="envelope-label">Letter 3</div>
+                        </div>
+                        <div class="envelope-flap"></div>
+                    </div>
+                </div>
+
+                <div class="envelope-container" onclick="openLetter(4)">
+                    <div class="envelope-wrapper">
+                        <div class="envelope-seal"></div>
+                        <div class="envelope-body">
+                            <div class="envelope-label">Letter 4</div>
+                        </div>
+                        <div class="envelope-flap"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section" id="gallerySection">
+            <button class="back-btn" onclick="showSection('home')">←</button>
+            <h2>Our Beautiful Memories</h2>
+            <p class="gallery-subtitle">A collection of our most precious moments together</p>
+
+            <div class="slideshow-container">
+                <div class="slide-wrapper">
+                    <!-- Slides will be generated by JavaScript -->
+                    <div id="slidesContainer"></div>
+                </div>
+
+                <div class="slide-controls">
+                    <button class="slide-btn" onclick="changeSlide(-1)">❮</button>
+                    <button class="slide-btn" onclick="changeSlide(1)">❯</button>
+                </div>
+
+                <div class="dots-container" id="dotsContainer">
+                    <!-- Dots will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Section -->
+        <section class="game-section" id="gameSection">
+            <button class="back-btn" onclick="showSection('home')">←</button>
+            <h2>Just For You</h2>
+            <p class="game-subtitle">Discover why you're so special to me!</p>
+            
+            <div class="game-container">
+                <div class="reason-counter">
+                    Reasons discovered: <span id="reasonCount">0</span> / <span id="totalReasons">50</span>
+                </div>
+
+                <div class="reason-display">
+                    <div class="reason-icon" id="reasonIcon">💝</div>
+                    <div class="reason-text" id="reasonText">
+                        Click the button below to discover a reason why I love you!
+                    </div>
+                </div>
+
+                <button class="reveal-btn" onclick="revealReason()">
+                    💕 Show Me A Reason 💕
+                </button>
+
+                <div class="memory-game-section">
+                    <h3 class="memory-game-title">Memory Match Game</h3>
+                    <div class="win-message" id="winMessage">🎉 Congratulations! You Won! 🎉</div>
+                    <div class="game-stats">
+                        <div>Moves: <span id="moves">0</span></div>
+                        <div>Time: <span id="timer">0:00</span></div>
+                    </div>
+                    <div class="memory-cards" id="memoryCards">
+                        <!-- Cards will be generated by JavaScript -->
+                    </div>
+                    <button class="reset-game" onclick="resetGame()">🔄 New Game</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Countdown Page -->
+        <section class="countdown-page" id="countdownPage">
+            <button class="back-btn" onclick="showSection('home')">←</button>
+            <h2>A Special Surprise</h2>
+            <p class="subtitle-count">Time since you blessed this world - February 12, 2004</p>
+            
+            <div class="countdown-section">
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="years">0</span>
+                        <span class="countdown-label">Years</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">0</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">0</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">0</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">0</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Letter Modal -->
+    <div class="letter-modal" id="letterModal">
+        <div class="letter-content" id="letterContent">
+            <button class="close-letter" onclick="closeLetter()">✕</button>
+            <div id="letterText"></div>
+        </div>
+    </div>
+
+    <script>
+        // ========== FLOATING HEARTS INTRO ==========
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const heartCount = 30;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 4 + 's';
+                heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        createFloatingHearts();
+
+        setTimeout(() => {
+            document.getElementById('introAnimation').classList.add('fade-out');
+            setTimeout(() => {
+                document.getElementById('introAnimation').style.display = 'none';
+                document.getElementById('mainContent').classList.add('visible');
+            }, 1000);
+        }, 5000);
+
+        // ========== NAVIGATION ==========
+        function showSection(section) {
+            document.getElementById('homeSection').style.display = 'none';
+            document.getElementById('countdownPage').classList.remove('active');
+            document.getElementById('letterSection').classList.remove('active');
+            document.getElementById('gallerySection').classList.remove('active');
+            document.getElementById('gameSection').classList.remove('active');
+
+            if (section === 'home') {
+                document.getElementById('homeSection').style.display = 'flex';
+            } else if (section === 'countdown') {
+                document.getElementById('countdownPage').classList.add('active');
+            } else if (section === 'letters') {
+                document.getElementById('letterSection').classList.add('active');
+            } else if (section === 'gallery') {
+                document.getElementById('gallerySection').classList.add('active');
+            } else if (section === 'game') {
+                document.getElementById('gameSection').classList.add('active');
+            }
+        }
+
+        // ========== COUNTDOWN ==========
+        const birthDate = new Date('2004-02-12T00:00:00');
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = now - birthDate;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const remainingAfterYears = diff % (1000 * 60 * 60 * 24 * 365.25);
+            const days = Math.floor(remainingAfterYears / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('years').textContent = years;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ========== LETTER SYSTEM ==========
+        const letters = {
+            1: {
+                title: "To My Dearest Ferbuu ♡",
+                content: `<p>My Precious Ferbuu ♡,</p>
+                <p>From the moment you came into my life, everything changed. You brought laughter into my quiet moments and love into every corner of my heart.</p>
+                <p>Your smile is the most beautiful thing I've ever seen and your presence makes everything better. Every day with you is a gift I cherish more than words can express.</p>
+                <p>Thank you for being you for being the most amazing, kind, and wonderful person I know. You make this world a better place for me just by being in it.</p>
+                <p>And just keep this in mind that I won't ever let you go cause I never wanna loose you.</p>`
+            },
+            2: {
+                title: "Why I Love You, Shuttu ♡",
+                content: `<p>My Sweet Shuttu ♡,</p>
+                <p>There are infinite reasons why I love you, but here are just a few that fill my heart every single day.</p>
+                <p>I love your kindness, how you care for me whenever im down and doesnt't feel well. I love your strength and the grace with which you handle everything life throws at you.</p>
+                <p>I love how you make me feel loved, appreciated, and whenever i feel insecure you assure me. It makes me the luckiest person alive in the world. You are my sunshine, my comfort, and my greatest joy.</p>
+                <p>Being with you is the best part of every day, and loving you is the easiest yet hardest thing i've ever done</p>`
+            },
+            3: {
+                title: "Our Beautiful Journey",
+                content: `<p>Dearest Shonna ♡,</p>
+                <p>Every moment we've shared together is a treasure I hold close to my heart. From being best friends to being lovers...And tbh you are the best thing that has ever happened to me and I can't be enough thankful to god.</p>
+                <p>And I want you to promise one thing ki humari jitni bhi ldai hoajaye we will fight together solve it and humesha khush rahenge.</p>
+                <p>Becuase the thing that scares me the most is that ki mein tujhe kho na bethun and mein tujhe kho dunga there will be no meaning to my life. And thank you for being there for me....</p>
+                <p>I loved you, I will love and I'll keep loving you baby ♡......</p>
+                <p>Here's to us, to our love, and to all the amazing moments still to come.</p>`
+            },
+            4: {
+                title: "Happy Birthday, My Love ♡",
+                content: `<p>My Darling Chammak Challo ♡,</p>
+                <p>On this special day, I want you to know just how much you mean to me. You are the most beautiful person I've ever known, and I feel blessed every single day to have you in my life.</p>
+                <p>Your birthday isn't just a celebration of another year, it's a celebration of the incredible person you are and marks another year of the world being blessed.</p>
+                <p>I promise to always cherish you, support your dreams, make you laugh, and stand by your side through everything. You deserve all the happiness in the world.</p>
+                <p>Happy Birthday, baby. I love you more than words could ever expresss today and always.</p>
+                <p class="letter-signature">Forever Yours ♡</p>`
+            }
+        };
+
+        function openLetter(letterNumber) {
+            const envelope = event.currentTarget;
+            envelope.classList.add('opened');
+            
+            setTimeout(() => {
+                const letter = letters[letterNumber];
+                document.getElementById('letterText').innerHTML = `
+                    <h3>${letter.title}</h3>
+                    ${letter.content}
+                    <div class="letter-signature">With all my love ♡</div>
+                `;
+                document.getElementById('letterModal').classList.add('active');
+                envelope.classList.remove('opened');
+            }, 600);
+        }
+
+        function closeLetter() {
+            document.getElementById('letterModal').classList.remove('active');
+        }
+
+        // ========== GALLERY SLIDESHOW ==========
+        // REPLACE THESE WITH YOUR OWN IMAGES
+        const galleryImages = [
+            {
+                src: 'images/memory1.jpeg'
+            },
+            {
+                src: 'images/memory2.jpeg'
+            },
+            {
+                src: 'images/memory3.jpeg'
+            },
+            {
+                src: 'images/memory4.jpeg'
+            },
+            {
+                src: 'images/memory5.jpeg'
+            }
+        ];
+
+        let currentSlideIndex = 0;
+        let autoplayInterval;
+        let isAutoplay = true;
+
+        function initGallery() {
+            const slidesContainer = document.getElementById('slidesContainer');
+            const dotsContainer = document.getElementById('dotsContainer');
+            
+            slidesContainer.innerHTML = '';
+            dotsContainer.innerHTML = '';
+            
+            galleryImages.forEach((image, index) => {
+                // Create slide
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                if (index === 0) slide.classList.add('active');
+                slide.innerHTML = `
+                    <img src="${image.src}" alt="Memory ${index + 1}">
+                `;
+                slidesContainer.appendChild(slide);
+                
+                // Create dot
+                const dot = document.createElement('span');
+                dot.className = 'dot';
+                if (index === 0) dot.classList.add('active');
+                dot.onclick = () => goToSlide(index);
+                dotsContainer.appendChild(dot);
+            });
+            
+            startAutoplay();
+        }
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            slides[currentSlideIndex].classList.remove('active');
+            dots[currentSlideIndex].classList.remove('active');
+            
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex >= galleryImages.length) currentSlideIndex = 0;
+            if (currentSlideIndex < 0) currentSlideIndex = galleryImages.length - 1;
+            
+            slides[currentSlideIndex].classList.add('active');
+            dots[currentSlideIndex].classList.add('active');
+        }
+
+        function goToSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            slides[currentSlideIndex].classList.remove('active');
+            dots[currentSlideIndex].classList.remove('active');
+            
+            currentSlideIndex = index;
+            
+            slides[currentSlideIndex].classList.add('active');
+            dots[currentSlideIndex].classList.add('active');
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(() => {
+                changeSlide(1);
+            }, 4000);
+        }
+
+        initGallery();
+
+        // ========== REASONS WHY I LOVE YOU ==========
+        const reasons = [
+            { text: "Your smile lights up my entire world", icon: "😊" },
+            { text: "You make every day an adventure", icon: "🌟" },
+            { text: "Your laugh is the most beautiful sound", icon: "😄" },
+            { text: "You have the kindest heart I've ever known", icon: "💖" },
+            { text: "You always know how to make me smile", icon: "🌈" },
+            { text: "Your hugs feel like home", icon: "🤗" },
+            { text: "You believe in me even when I don't", icon: "💪" },
+            { text: "Every moment with you is precious", icon: "⏰" },
+            { text: "You're my best friend and my love", icon: "👫" },
+            { text: "Your eyes sparkle when you're happy", icon: "✨" },
+            { text: "You make ordinary moments magical", icon: "🎭" },
+            { text: "Your passion inspires me daily", icon: "🔥" },
+            { text: "You're incredibly thoughtful and caring", icon: "💝" },
+            { text: "You understand me like no one else", icon: "🧩" },
+            { text: "Your presence calms my soul", icon: "🕊️" },
+            { text: "You make me want to be better", icon: "🌱" },
+            { text: "Your creativity amazes me", icon: "🎨" },
+            { text: "You're beautiful inside and out", icon: "🌹" },
+            { text: "You make me laugh until my cheeks hurt", icon: "😂" },
+            { text: "Your strength is incredible", icon: "💎" },
+            { text: "You're my safe place", icon: "🏡" },
+            { text: "Your dreams inspire me", icon: "💭" },
+            { text: "You make everything better just by being there", icon: "🌞" },
+            { text: "Your optimism is contagious", icon: "🎈" },
+            { text: "You're genuinely one of a kind", icon: "🦋" },
+            { text: "Your intelligence is captivating", icon: "📚" },
+            { text: "You make me feel loved every single day", icon: "💕" },
+            { text: "Your quirks make you perfectly you", icon: "🎪" },
+            { text: "You're my favorite person to talk to", icon: "💬" },
+            { text: "Your support means everything to me", icon: "🤝" },
+            { text: "You make me feel complete", icon: "🧡" },
+            { text: "Your spontaneity keeps life exciting", icon: "🎢" },
+            { text: "You're incredibly talented", icon: "🌠" },
+            { text: "Your empathy touches my heart", icon: "💗" },
+            { text: "You make me feel like the luckiest person alive", icon: "🍀" },
+            { text: "Your voice is my favorite melody", icon: "🎵" },
+            { text: "You bring out the best in me", icon: "🌺" },
+            { text: "Your patience with me is endless", icon: "⏳" },
+            { text: "You're my biggest cheerleader", icon: "📣" },
+            { text: "Your love makes me feel invincible", icon: "🦸" },
+            { text: "You're the most amazing person I know", icon: "👑" },
+            { text: "Your energy is infectious", icon: "⚡" },
+            { text: "You make my heart skip a beat", icon: "💓" },
+            { text: "Your wisdom guides me", icon: "🦉" },
+            { text: "You're my greatest blessing", icon: "🙏" },
+            { text: "Your love is my favorite gift", icon: "🎁" },
+            { text: "You make life worth living", icon: "🌍" },
+            { text: "Your dedication is admirable", icon: "🏆" },
+            { text: "You're simply perfect for me", icon: "💯" },
+            { text: "You are my forever and always", icon: "♾️" }
+        ];
+
+        let revealedReasons = new Set();
+        let currentReasonIndex = -1;
+
+        function revealReason() {
+            let randomIndex;
+            
+            // Get a new random reason that hasn't been shown
+            do {
+                randomIndex = Math.floor(Math.random() * reasons.length);
+            } while (revealedReasons.has(randomIndex) && revealedReasons.size < reasons.length);
+            
+            if (revealedReasons.size < reasons.length) {
+                revealedReasons.add(randomIndex);
+                currentReasonIndex = randomIndex;
+                
+                const reason = reasons[randomIndex];
+                const reasonText = document.getElementById('reasonText');
+                const reasonIcon = document.getElementById('reasonIcon');
+                
+                // Animate out
+                reasonText.style.opacity = '0';
+                setTimeout(() => {
+                    reasonText.textContent = reason.text;
+                    reasonIcon.textContent = reason.icon;
+                    reasonText.style.animation = 'none';
+                    setTimeout(() => {
+                        reasonText.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    }, 10);
+                }, 300);
+                
+                document.getElementById('reasonCount').textContent = revealedReasons.size;
+                
+                if (revealedReasons.size === reasons.length) {
+                    setTimeout(() => {
+                        alert('🎉 You\'ve discovered all the reasons! You are truly loved beyond measure! 💖');
+                    }, 1000);
+                }
+            }
+        }
+
+        document.getElementById('totalReasons').textContent = reasons.length;
+
+        // ========== MEMORY GAME ==========
+        const emojis = ['💕', '🌹', '✨', '💝', '🎀', '🦋', '🌸', '💖'];
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moves = 0;
+        let gameTimer;
+        let seconds = 0;
+
+        function initGame() {
+            const gameEmojis = [...emojis, ...emojis];
+            cards = gameEmojis.sort(() => Math.random() - 0.5);
+            
+            const cardsContainer = document.getElementById('memoryCards');
+            cardsContainer.innerHTML = '';
+            
+            cards.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.index = index;
+                card.dataset.emoji = emoji;
+                card.innerHTML = `
+                    <div class="card-back">💌</div>
+                    <div class="card-front">${emoji}</div>
+                `;
+                card.addEventListener('click', flipCard);
+                cardsContainer.appendChild(card);
+            });
+            
+            moves = 0;
+            matchedPairs = 0;
+            seconds = 0;
+            document.getElementById('moves').textContent = moves;
+            document.getElementById('timer').textContent = '0:00';
+            document.getElementById('winMessage').classList.remove('show');
+            
+            if (gameTimer) clearInterval(gameTimer);
+            gameTimer = setInterval(updateTimer, 1000);
+        }
+
+        function flipCard() {
+            if (flippedCards.length === 2) return;
+            if (this.classList.contains('flipped') || this.classList.contains('matched')) return;
+            
+            this.classList.add('flipped');
+            flippedCards.push(this);
+            
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('moves').textContent = moves;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            const emoji1 = card1.dataset.emoji;
+            const emoji2 = card2.dataset.emoji;
+            
+            if (emoji1 === emoji2) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                flippedCards = [];
+                
+                if (matchedPairs === emojis.length) {
+                    clearInterval(gameTimer);
+                    setTimeout(() => {
+                        document.getElementById('winMessage').classList.add('show');
+                    }, 500);
+                }
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        function updateTimer() {
+            seconds++;
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            document.getElementById('timer').textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function resetGame() {
+            if (gameTimer) clearInterval(gameTimer);
+            flippedCards = [];
+            initGame();
+        }
+
+        initGame();
+
+        // Close letter modal on background click
+        document.getElementById('letterModal').addEventListener('click', function(e) {
+            if (e.target === this) closeLetter();
+        });
+    </script>
+</body>
+</html>
